@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Dating - OnlineDating</title>
+    <style>
+        body {
+            background-image: url("static/bg-dating.jpg");
+            background-attachment: fixed;
+            background-position: center;
+            background-size: cover;
+        }
+
+        #dating {
+            background-color: white;
+            border-radius: 5%;
+            padding-top: 5%;
+            padding-bottom: 5%;
+            text-align: center;
+            margin: 25%;
+            margin-top: auto;
+            margin-bottom: auto;
+        }
+    </style>
+</head>
+<body>
+    <div id="dating">
+        <p><a href="logout">Log out</a></p><br>
+        <p><a href="settings">Account settings</a></p>
+
+        {% if people %}
+        <p>People that match your preferences:</p>
+
+        {{ people | safe }}
+        {% else %}
+        <p>There are no people registered on our website that match your preferences.</p>
+        {% endif %}
+
+    </div>
+</body>
+</html>

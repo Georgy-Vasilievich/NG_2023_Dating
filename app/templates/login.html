@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Login - OnlineDating</title>
+    <style>
+        body {
+            background-image: url("static/bg-login.jpg");
+            background-attachment: fixed;
+            background-position: center;
+            background-size: cover;
+        }
+
+        #register {
+            background-color: white;
+            border-radius: 5%;
+            padding: 1%;
+            position: absolute;
+            top: 5%;
+            right: 5%;
+        }
+
+        #login {
+            background-color: white;
+            border-radius: 5%;
+            padding: 3%;
+            position: absolute;
+            text-align: center;
+            top: 35%;
+            left: 5%;
+        }
+    </style>
+</head>
+<body>
+    <div id="register"><a href="/">Register</a></div>
+    <div id="login">
+        <h1 style="color: red;">OnlineDating</h1>
+        <h2>Free dating service</h2>
+        {% if error %}
+        <p>{{ error }}</p>
+        {% endif %}
+        <form method="POST">
+            <label for="username">Username:</label><br>
+            <input type="text" id="username" name="username" required><br>
+            <label for="password">Password:</label><br>
+            <input type="password" id="password" name="password" required><br>
+
+            <button id="submit" type="submit" style="background-color: lime;">Login</button>
+        </form>
+    </div>
+</body>
+</html>

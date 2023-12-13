@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Settings - OnlineDating</title>
+    <style>
+        body {
+            background-image: url("static/bg-dating.jpg");
+            background-attachment: fixed;
+            background-position: center;
+            background-size: cover;
+        }
+
+        #settings {
+            background-color: white;
+            border-radius: 5%;
+            padding-top: 5%;
+            padding-bottom: 5%;
+            text-align: center;
+            margin: 25%;
+            margin-top: auto;
+            margin-bottom: auto;
+        }
+    </style>
+</head>
+<body>
+    <div id="settings">
+        {% if error %}
+        <p>{{ error }}</p>
+        {% endif %}
+        <p></p><a href="/dating">Back</a></p>
+        <form method="POST" enctype="multipart/form-data">
+            <p>Change password:</p>
+            <label for="old_password">Old password:</label><br>
+            <input type="password" id="old_password" name="old_password"><br>
+            <label for="new_password">New password:</label><br>
+            <input type="password" id="new_password" name="new_password"><br>
+            <label for="confirm">Password confirmation:</label><br>
+            <input type="password" id="confirm" name="confirm"><br><br>
+
+            <label for="first_name">First name:</label><br>
+            <input type="text" id="first_name" name="first_name" value="{{ first_name }}"><br>
+            <label for="birth_date">Birth date:</label><br>
+            <input type="date" id="birth_date" name="birth_date" value="{{ birth_date }}"><br>
+            <label for="email">E-mail:</label><br>
+            <input type="email" id="email" name="email" value="{{ email }}"><br>
+            <label for="location">Location:</label><br>
+            <input type="text" id="location" name="location" value="{{ location if location }}"><br><br>
+
+            <p>Your gender:</p>
+            <input type="radio" id="unset" name="user_gender" value="unset" {{ "checked" if user_gender == 1 }} required>
+            <label for="unset">Prefer not to say</label><br>
+            <input type="radio" id="woman" name="user_gender" value="woman" {{ "checked" if user_gender == 2 }}>
+            <label for="woman">Woman</label><br>
+            <input type="radio" id="man" name="user_gender" value="man" {{ "checked" if user_gender == 4 }}>
+            <label for="man">Man</label><br>
+            <input type="radio" id="beyondbinary" name="user_gender" value="beyondbinary" {{ "checked" if user_gender == 8 }}>
+            <label for="beyondbinary">Beyond Binary</label><br><br>
+
+            <p>Preferred genders:</p>
+            <input type="checkbox" class="preferred_gender" id="preference_woman" name="preference_woman" {{ "checked" if preference_woman }}>
+            <label for="preference_woman">Woman</label><br>
+            <input type="checkbox" class="preferred_gender" id="preference_man" name="preference_man" {{ "checked" if preference_man }}>
+            <label for="preference_man">Man</label><br>
+            <input type="checkbox" class="preferred_gender" id="preference_beyondbinary" name="preference_beyondbinary" {{ "checked" if preference_beyondbinary }}>
+            <label for="preference_beyondbinary">Beyond Binary</label><br>
+            <input type="checkbox" class="preferred_gender" id="preference_unset" name="preference_unset" {{ "checked" if preference_unset }}>
+            <label for="preference_unset">Unset</label><br><br>
+
+            <input type="checkbox" id="preference_all" name="preference_all" {{"checked" if preference_woman and preference_man and preference_beyondbinary and preference_unset }}>
+            <label for="preference_all">All</label><br><br>
+
+            <p>Passions:</p>
+            <input type="checkbox" id="passion_traveling" name="passion_traveling" {{ "checked" if passion_traveling }}>
+            <label for="passion_traveling">Traveling</label><br>
+            <input type="checkbox" id="passion_reading" name="passion_reading" {{ "checked" if passion_reading }}>
+            <label for="passion_reading">Reading</label><br>
+            <input type="checkbox" id="passion_cooking" name="passion_cooking" {{ "checked" if passion_cooking }}>
+            <label for="passion_cooking">Cooking & Baking</label><br>
+            <input type="checkbox" id="passion_sports" name="passion_sports" {{ "checked" if passion_sports }}>
+            <label for="passion_sports">Sports & Fitness</label><br>
+            <input type="checkbox" id="passion_dancing" name="passion_dancing" {{ "checked" if passion_dancing }}>
+            <label for="passion_dancing">Dancing</label><br>
+            <input type="checkbox" id="passion_music" name="passion_music" {{ "checked" if passion_music }}>
+            <label for="passion_music">Music</label><br><br>
+
+            <label for="additional">Additional information: </label><br>
+            <textarea id="additional" name="additional">{{ additional if additional }}</textarea><br><br>
+
+            <label for="avatar">Choose a profile picture:</label><br>
+            <input type="file" id="avatar" name="avatar" accept="image/jpeg"><br><br>
+
+            <input type="checkbox" id="receive_email" name="receive_email" {{ "checked" if receive_email }}>
+            <label for="receive_email">Receive e-mail daily about the people who match your choices</label><br><br>
+
+            <button id="submit" type="submit">Submit</button>
+        </form>
+    </div>
+    <script>
+        const preferences = document.getElementsByClassName("preferred_gender");
+        const checkboxAll = document.getElementById("preference_all");
+
+        function checkboxAllCondition() {
+            let allChecked = true;
+            for (let i = 0; i < preferences.length; i++)
+                if (!preferences[i].checked)
+                    allChecked = false;
+            checkboxAll.checked = allChecked ? true : false;
+        }
+
+        function checkboxAllCheck() {
+            let status = checkboxAll.checked;
+            for (let i = 0; i < preferences.length; i++)
+                preferences[i].checked = status;
+        }
+
+        for (let i = 0; i < preferences.length; i++) {
+            preferences[i].addEventListener('change', (event) => {
+                checkboxAllCondition();
+            })
+        }
+
+        checkboxAll.addEventListener('change', (event) => {
+            checkboxAllCheck();
+        })
+    </script>
+</body>
+</html>
