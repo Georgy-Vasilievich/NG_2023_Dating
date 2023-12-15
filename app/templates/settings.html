@@ -28,7 +28,7 @@
         {% if error %}
         <p>{{ error }}</p>
         {% endif %}
-        <p></p><a href="/dating">Back</a></p>
+        <p><a href="/dating">Back</a></p>
         <form method="POST" enctype="multipart/form-data">
             <p>Change password:</p>
             <label for="old_password">Old password:</label><br>
@@ -102,19 +102,21 @@
 
         function checkboxAllCondition() {
             let allChecked = true;
-            for (let i = 0; i < preferences.length; i++)
-                if (!preferences[i].checked)
+            for (let i = 0; i < preferences.length; ++i)
+                if (!preferences[i].checked) {
                     allChecked = false;
-            checkboxAll.checked = allChecked ? true : false;
+                    break;
+                }
+            checkboxAll.checked = allChecked;
         }
 
         function checkboxAllCheck() {
-            let status = checkboxAll.checked;
-            for (let i = 0; i < preferences.length; i++)
+            const status = checkboxAll.checked;
+            for (let i = 0; i < preferences.length; ++i)
                 preferences[i].checked = status;
         }
 
-        for (let i = 0; i < preferences.length; i++) {
+        for (let i = 0; i < preferences.length; ++i) {
             preferences[i].addEventListener('change', (event) => {
                 checkboxAllCondition();
             })
