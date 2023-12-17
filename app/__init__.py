@@ -29,10 +29,7 @@ login_manager.login_view = "login"
 @login_manager.user_loader
 def user_loader(user_id):
     try:
-        user = db.session.query(User).filter_by(id=user_id).first()
-        if user:
-            return user
-        return
+        return db.session.query(User).filter_by(id=user_id).first()
     except Exception as e:
         print(f"Exception: {e}")
 
