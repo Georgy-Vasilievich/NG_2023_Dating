@@ -1,4 +1,4 @@
-"""This file contain the settings page"""
+"""This file contains the settings page"""
 
 from datetime import date
 import bcrypt

@@ -1,4 +1,4 @@
-"""This file contain the registration page"""
+"""This file contains the registration page"""
 
 from datetime import date
 import bcrypt

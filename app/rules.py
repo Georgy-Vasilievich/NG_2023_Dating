@@ -1,4 +1,4 @@
-"""This file contain the rules page"""
+"""This file contains the rules page"""
 
 from flask import Blueprint
 

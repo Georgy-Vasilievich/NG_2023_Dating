@@ -1,4 +1,4 @@
-"""This file contain the logout function"""
+"""This file contains the logout function"""
 
 from flask import Blueprint, redirect
 import flask_login

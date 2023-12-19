@@ -1,4 +1,4 @@
-"""This file contain the main page"""
+"""This file contains the main page"""
 
 from flask import Blueprint, render_template
 import flask_login

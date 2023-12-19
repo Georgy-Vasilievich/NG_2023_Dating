@@ -1,4 +1,4 @@
-"""This file contain the login page"""
+"""This file contains the login page"""
 
 import bcrypt
 from flask import Blueprint, request, redirect, render_template, url_for
