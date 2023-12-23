@@ -47,14 +47,7 @@ def get_passions(passions):
     if passions & 32:
         passion_list.append("Music")
 
-    passion_string = ""
-
-    for idx, passion in enumerate(passion_list):
-        passion_string += passion
-        if idx < len(passion_list) - 1:
-            passion_string += ", "
-
-    return passion_string if passions else None
+    return ", ".join(passion_list) if passions else None
 
 
 def get_people(user_id):
